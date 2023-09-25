@@ -13,12 +13,12 @@ pip install .
 python setup_data.py
 ```
 
-# Run Experiments (on personal computer) [\approx 1 week]
+# Run Experiments (on personal computer) [$\approx$ 1 week]
 ```
 python run_experiment.py
 ```
 
-# Experiments (on cluster) [\approx 1 day - 1 day]
+# Experiments (on cluster) [$\approx$ 1 day]
 ```
 sbatch script.slurm
 ```
