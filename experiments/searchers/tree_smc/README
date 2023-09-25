@@ -1,0 +1,56 @@
+This folder contains the scripts used in the following paper:
+    "Top-down particle filtering for Bayesian decision trees", 
+    Balaji Lakshminarayanan, Daniel M. Roy, Yee Whye Teh
+    http://arxiv.org/abs/1303.0561
+
+I ran my experiments using Enthought python (which includes all the necessary python packages).
+If you are running a different version of python, you will need the following python packages 
+(and possibly other packages) to run the scripts:
+- numpy
+- scipy
+- matplotlib
+- sklearn (for CART experiments)
+
+The datasets are not included here; you need to download them from the UCI repository. You can run 
+experiments using toy data though. See instructions in README in process_data/madelon, 
+process_data/magic04 and process_data/pendigits folders for automatically downloading and processing the datasets. 
+
+If you have any questions/comments/suggestions, please contact me at 
+balaji@gatsby.ucl.ac.uk.
+
+Code released under MIT license (see COPYING for more info).
+
+----------------------------------------------------------------------------
+
+List of scripts in the src folder:
+- bdtsmc.py
+- bdtmcmc.py
+- tree_utils.py
+- utils.py
+
+Help on usage can be obtained by typing the following commands on the terminal:
+./bdtsmc.py -h
+./bdtmcmc.py -h
+
+Example usage:
+./bdtsmc.py --dataset toy --alpha 5.0 --alpha_split 0.95 --beta_split 0.5 --save 1 --n_particles 100 --proposal prior --grow next
+./bdtmcmc.py --dataset toy --alpha 5.0 --alpha_split 0.95 --beta_split 0.5 --save 1 --n_iter 1000 -v 0
+
+Note that the results (predictions, accuracy, log predictive probability on training/test data, runtimes) are stored in the pickle files. 
+You need to write additional scripts to aggregate the results from these pickle files and generate the plots in the PDF.
+
+I generated commands for parameter sweeps using 'build_cmds' script by Jan Gasthaus 
+(available publicly at https://github.com/jgasthaus/Gitsby/tree/master/pbs/python). 
+Some examples of parameter sweeps are:
+
+SMC design choice experiments:
+./build_cmds ./bdtsmc.py "--op_dir={results}" "--init_id=1:1:11" "--resample={multinomial}" "--grow={next,layer}" "--dataset={pendigits,magic04}" "--proposal={posterior,prior,empirical}" "--n_particles={5,10,25,50,100,250,500,750,1000,1500,2000}" "--max_iterations=5000" "--ess_threshold={0.1}"  "--save={1}"  "--alpha={5.0}" "--alpha_split={0.95}" "--beta_split={0.5}"
+
+Effect of irrelevant features: madelon dataset
+./build_cmds ./bdtsmc.py "--op_dir={results}" "--init_id=1:1:11" "--resample={multinomial}" "--grow={next}" "--dataset={madelon}" "--proposal={posterior,prior}" "--n_particles={10,50,100,250}" "--max_iterations=5000" "--  ess_threshold={0.1}"  "--save={1}"  "--alpha={5.0}" "--alpha_split={0.95}" "--beta_split={0.5}"
+
+Island-model SMC:
+/build_cmds ./bdtsmc.py "--op_dir={results}" "--init_id=1:1:11" "--resample={multinomial}" "--grow={next}" "--dataset={pendigits,magic04}" "--proposal={posterior,prior}" "--n_particles={100,250,500,750,1000,1500, 2000}" "--max_iterations=5000" "--ess_threshold={0.1}"  "--save={1}"  "--alpha={5.0}" "--alpha_split={0.95}" "--beta_split={0.5}" "--n_islands={5}"
+
+MCMC experiments:
+./build_cmds ./bdtmcmc.py "--mcmc_type={chipman}" "--sample_y={0}" "--dataset={pendigits,magic04}" "--save={1}"  "--n_iterations={100000}" "--init_id=1:1:11"  "--alpha_split={0.95}" "--beta_split={0.5}"  "--alpha={5.0}"

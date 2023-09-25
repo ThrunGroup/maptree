@@ -1,0 +1,6 @@
+Run the following commands to download and create the pickle files.
+
+./download.sh
+./process_data.py
+
+Remember to use the right 'data_path' argument while loading files.
