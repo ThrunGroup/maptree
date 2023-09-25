@@ -1,10 +1,10 @@
-from experiments.dataloader.cp4im import download_and_install as download_and_install_cp4im_data
-from experiments.dataloader.synth import generate_synthetic_tree_data
+import experiments.dataloader.cp4im
+import experiments.dataloader.synth
 
 
 def main():
-    download_and_install_cp4im_data()
-    generate_synthetic_tree_data()
+    experiments.dataloader.cp4im.download_and_install()
+    experiments.dataloader.synth.generate_synthetic_tree_data()
 
 
 if __name__ == '__main__':

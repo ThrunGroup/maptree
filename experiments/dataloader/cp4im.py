@@ -34,12 +34,14 @@ def download_and_install(datasets: List[str] = None):
         for line in lines[data_line:]:
             if not line:
                 continue
+
             sample = line.split(' ')
             items = map(int, sample[:-1])
             label = int(sample[-1])
             feat = np.zeros(num_features, dtype=np.int64)
             for i in items:
                 feat[i] = 1
+
             feats.append(feat)
             labels.append(label)
 

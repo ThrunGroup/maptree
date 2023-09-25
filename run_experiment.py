@@ -7,14 +7,12 @@ from experiments.experiments.fig3.runner import run as run_fig3
 from experiments.globals import CP4IM_DATASET_NAMES, SYNTH_NUM_TREES
 
 
-ALL_JOBS = list(range(52))
-
 if __name__ == '__main__':
     parser = ArgumentParser()
-    parser.add_argument('--job_index', '-ji', default=None, type=int)
+    parser.add_argument('--job_index', '-j', default=None, type=int)
     args = parser.parse_args()
 
-    jobs = ALL_JOBS if args.job_index is not None else [args.job_index]
+    jobs = list(range(52)) if args.job_index is None else [args.job_index]
 
     for job in jobs:
         if job < 2 * len(CP4IM_DATASET_NAMES):

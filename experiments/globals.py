@@ -167,6 +167,7 @@ def save_results(results: pd.DataFrame, experiment: str, dataset: str):
     dir_dataset_results = os.path.join(DIR_RESULTS_DATA, experiment, dataset)
     if not os.path.exists(dir_dataset_results):
         os.makedirs(dir_dataset_results)
+
     file = os.path.join(dir_dataset_results, f"results-{timestamp}.csv")
     df.to_csv(file)
     print(f"Saved results for experiment {experiment} on dataset {dataset} to file {file}")
@@ -176,6 +177,7 @@ def get_latest_results(experiment: str, dataset: str) -> pd.DataFrame:
     results_dir = os.path.join(DIR_RESULTS_DATA, experiment, dataset)
     if not os.path.exists(results_dir):
         raise ValueError(f"Results directory does not exist: {results_dir}")
+
     results_files = [
         os.path.basename(f) for f in
         glob(os.path.join(results_dir, 'results-*.csv'))

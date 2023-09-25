@@ -1,4 +1,3 @@
-gosdt==0.1.7
 pydl8.5==0.1.8
 scikit-learn~=1.0
 setuptools~=68.0.0

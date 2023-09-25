@@ -3,9 +3,15 @@ from typing import List
 import os
 
 from experiments.searchers.binary_classification_tree import BinaryClassificationTree
-from ..globals import SYNTH_NUM_TREES, SYNTH_TOTAL_SAMPLES_PER_TREE, \
-    SYNTH_NUM_FEATURES, SEED_SYNTH_TREE_GENERATOR, SEED_SYNTH_DATA_GENERATOR, \
-    SYNTH_TREE_NUM_INTERNAL_NODES, DIR_DATA_SYNTH
+from ..globals import (
+    SYNTH_NUM_TREES,
+    SYNTH_TOTAL_SAMPLES_PER_TREE,
+    SYNTH_NUM_FEATURES,
+    SEED_SYNTH_TREE_GENERATOR,
+    SEED_SYNTH_DATA_GENERATOR,
+    SYNTH_TREE_NUM_INTERNAL_NODES,
+    DIR_DATA_SYNTH
+)
 
 
 def generate_random_tree(

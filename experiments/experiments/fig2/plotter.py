@@ -55,5 +55,6 @@ def run():
     fig_file = os.path.join(DIR_RESULTS_FIGS, f"fig2.pdf")
     if not os.path.exists(DIR_RESULTS_FIGS):
         os.makedirs(DIR_RESULTS_FIGS)
+
     figure.savefig(fig_file, format='pdf', bbox_extra_artists=(legend,), bbox_inches='tight')
 

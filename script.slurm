@@ -8,4 +8,4 @@
 #SBATCH --mail-type=ALL
 #SBATCH --array=0-51
 
-python -u run_experiment.py -ji ${SLURM_ARRAY_TASK_ID}
+python -u run_experiment.py -j ${SLURM_ARRAY_TASK_ID}
